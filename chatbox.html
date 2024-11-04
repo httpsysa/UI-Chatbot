@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GROUP 2</title>
+<style>
+    /* General styling */
+    body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background-color: #f5f5f5;
+    }
+
+    /* Chatbox container */
+    .chatbox {
+        width: 400px; /* Increased width */
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+    }
+
+    /* Header styling */
+    .chatbox-header {
+        background-color: #ff0000; /* Red color for header */
+        color: #fff;
+        padding: 15px;
+        text-align: center;
+        font-weight: bold;
+    }
+
+    /* Chat messages area */
+    .chatbox-messages {
+        padding: 10px;
+        background-color: #ffffff;
+        height: 400px; /* Increased height */
+        overflow-y: auto;
+    }
+
+    /* Chat bubbles */
+    .chatbox-message {
+        display: flex;
+        align-items: center;
+        margin-bottom: 10px;
+    }
+
+    .chatbox-message.user {
+        justify-content: flex-end;
+    }
+
+    .chatbox-avatar {
+        width: 30px;
+        height: 30px;
+        background-color: #ff0000; /* Red color for avatar */
+        border-radius: 50%;
+        display: inline-block;
+        margin-right: 10px;
+    }
+
+    .chatbox-bubble {
+        padding: 10px 15px;
+        border-radius: 15px;
+        max-width: 70%;
+        font-size: 14px;
+    }
+
+    .chatbox-bubble.bot {
+        background-color: #ffcccc; /* Light red color for bot messages */
+        color: #000;
+    }
+
+    .chatbox-bubble.user {
+        background-color: #e6e6e6;
+        color: #000;
+    }
+
+    /* Input area */
+    .chatbox-input {
+        display: flex;
+        border-top: 1px solid #ddd;
+    }
+
+    .chatbox-input input {
+        flex: 1;
+        padding: 10px;
+        border: none;
+        outline: none;
+        font-size: 14px;
+        color: #000;
+    }
+
+    .chatbox-input button {
+        background-color: #ff0000; /* Red color for send button */
+        color: #fff;
+        border: none;
+        padding: 10px;
+        cursor: pointer;
+    }
+
+    .chatbox-input button:hover {
+        background-color: #cc0000; /* Darker red on hover */
+    }
+</style>
+</head>
+<body>
+
+<div class="chatbox">
+    <div class="chatbox-header">CHATBOT - GROUP 2</div>
+    <div class="chatbox-messages">
+        <div class="chatbox-message bot">
+            <div class="chatbox-avatar"></div>
+            <div class="chatbox-bubble bot">Hello there, How can I help you?</div>
+        </div>
+        <div class="chatbox-message user">
+            <div class="chatbox-bubble user">Hi</div>
+        </div>
+        <div class="chatbox-message bot">
+            <div class="chatbox-avatar"></div>
+            <div class="chatbox-bubble bot">Hello</div>
+        </div>
+    </div>
+    <div class="chatbox-input">
+        <input type="text" placeholder="Type a message...">
+        <button>Send</button>
+    </div>
+</div>
+
+</body>
+</html>
