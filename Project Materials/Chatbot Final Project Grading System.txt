@@ -1,0 +1,12 @@
+SIS Final Project Grading System
+
+1.0 for Group with complete record and Update UI and can add a pagination function
+1.1-1.25 for Group with complete record and Updated UI
+1.5-1.9 for Group to submit with no issue on final output
+2.0-2.4 for Group to submit with incomplete output
+2.5-2.9 for Group to submit with error on output
+3.0 for Group to submit late and with error on output
+5.0 for Group that didn't submit
+
+
+Deadline: Jan 22nd
