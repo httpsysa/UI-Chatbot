@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+        }
+        .container {
+            width: 100%;
+            max-width: 400px;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .dashboard {
+            display: none; /* Hidden by default */
+            text-align: center;
+        }
+        .error-message {
+            color: red;
+            font-size: 14px;
+            display: none;
+            margin-top: 10px;
+            text-align: center;
+        }
+        .action {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        .btn-primary {
+            background-color: #e74c3c; /* Red hue */
+            border-color: #e74c3c;
+        }
+        .btn-primary:hover {
+            background-color: #c0392b; /* Darker red hue */
+            border-color: #c0392b;
+        }
+        .btn-success {
+            background-color: #27ae60; /* Green for login */
+            border-color: #27ae60;
+        }
+        .btn-success:hover {
+            background-color: #229954; /* Darker green */
+            border-color: #229954;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Login Section -->
+    <div class="container login-section">
+        <h2>Admin Login</h2>
+        <form id="adminLoginForm">
+            <div class="mb-3">
+                <label for="username" class="form-label">Username</label>
+                <input type="text" id="username" class="form-control" placeholder="Enter Username" required>
+            </div>
+            <div class="mb-3">
+                <label for="password" class="form-label">Password</label>
+                <input type="password" id="password" class="form-control" placeholder="Enter Password" required>
+            </div>
+            <button type="submit" class="btn btn-success w-100">Login</button>
+            <p class="error-message" id="errorMessage">Invalid Username or Password!</p>
+        </form>
+    </div>
+
+    <div class="container dashboard">
+        <h2>Welcome to the Admin Dashboard</h2>
+        <p class="action">
+            <a href="addform.php" class="btn btn-primary">Add Data</a>
+            <a href="chatbot.php" class="btn btn-primary">Chat Now</a>
+            <a href="view.php" class="btn btn-primary">View Data</a>
+        </p>
+    </div>
+
+    <script>
+        document.getElementById('adminLoginForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            const validUsername = "Admin001";
+            const validPassword = "@dm!n123";
+
+            const username = document.getElementById('username').value.trim();
+            const password = document.getElementById('password').value.trim();
+
+            if (username === validUsername && password === validPassword) {
+                document.querySelector('.login-section').style.display = 'none';
+                document.querySelector('.dashboard').style.display = 'block';
+            } else {
+                document.getElementById('errorMessage').style.display = 'block';
+            }
+        });
+    </script>
+
+</body>
+</html>

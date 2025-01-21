@@ -282,11 +282,17 @@
         </div>
     </div>
 
+
+    <p><a href="admin.html" class="btn btn-primary">Click here to login as Admin!</a></p>
+
+
+    <!--
     <p class="action">
         <a href="addform.php" class="btn btn-primary">Add Data</a>
         <a href="index.php" class="btn btn-primary">Chat Now</a>
         <a href="view.php" class="btn btn-primary">View</a>
     </p>
+    -->
 
     <footer>Villa Chatbot. 2025 All rights reserved.</footer>
 
