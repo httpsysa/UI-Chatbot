@@ -14,10 +14,11 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
     <style>
-        /* Custom styles for alternating rows and layout */
         table {
             border-collapse: collapse;
             width: 100%;
+            table-layout: fixed;
+            /* Ensures columns have a fixed layout */
         }
 
         th,
@@ -25,6 +26,9 @@
             padding: 12px;
             text-align: left;
             border-bottom: 1px solid #ddd;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            /* Adds ellipsis if the text overflows */
         }
 
         th {
@@ -49,7 +53,42 @@
         .page-number.active {
             font-weight: bold;
         }
+
+        /* Specific widths for the columns */
+        th:nth-child(1),
+        td:nth-child(1) {
+            width: 80px;
+            /* Smaller width for the ID column */
+            white-space: nowrap;
+            /* Prevents wrapping for the ID column */
+        }
+
+        th:nth-child(4),
+        td:nth-child(4) {
+            width: 150px;
+            /* Smaller width for the Action column */
+            white-space: nowrap;
+            /* Prevents wrapping for the Action column */
+        }
+
+
+        th:nth-child(2),
+        td:nth-child(2) {
+            width: 40%;
+            /* Adjust width for the Query column */
+            white-space: normal;
+            /* Allows wrapping for the Query column */
+        }
+
+        th:nth-child(3),
+        td:nth-child(3) {
+            width: 50%;
+            /* Adjust width for the Reply column */
+            white-space: normal;
+            /* Allows wrapping for the Reply column */
+        }
     </style>
+
 </head>
 
 <body>
@@ -116,16 +155,13 @@
     </div>
 
     <!-- Add/Edit Entry Modal -->
-    <!-- Add/Edit Entry Modal -->
     <div class="modal fade" id="entryModal" tabindex="-1" role="dialog" aria-labelledby="entryModalLabel"
         aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="entryModalLabel">Entry</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <input type="hidden" id="entryId">
@@ -139,7 +175,6 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                     <button type="button" class="btn btn-primary" id="saveEntryBtn">Save changes</button>
                 </div>
             </div>
@@ -155,6 +190,19 @@
             let entries = [];
             let currentPage = 1;
             let rowsPerPage = 10;
+
+            $('#pageLength').change(function () {
+                rowsPerPage = parseInt($(this).val());
+                currentPage = 1; // Reset to the first page when the number of rows per page changes
+                renderTable();
+                renderPagination();
+            });
+
+            $('#searchBar').on('input', function () {
+                currentPage = 1; // Reset to the first page when a search is performed
+                renderTable();
+                renderPagination();
+            });
 
             function fetchEntries() {
                 $.ajax({
@@ -172,33 +220,40 @@
             }
 
             function renderTable() {
+                const searchQuery = $('#searchBar').val().toLowerCase();
+                const filteredEntries = entries.filter(entry =>
+                    entry.query.toLowerCase().includes(searchQuery) ||
+                    entry.reply.toLowerCase().includes(searchQuery)
+                );
+
                 const startIndex = (currentPage - 1) * rowsPerPage;
-                const paginatedEntries = entries.slice(startIndex, startIndex + rowsPerPage);
-                let tableContent = '';
+                const paginatedEntries = filteredEntries.slice(startIndex, startIndex + rowsPerPage);
 
-                if (paginatedEntries.length === 0) {
-                    tableContent = `
-                <tr>
-                    <td colspan="4" class="text-center">No entries available</td>
-                </tr>`;
-                } else {
-                    tableContent = paginatedEntries.map(entry => `
-                <tr>
-                    <td>${entry.id}</td>
-                    <td>${entry.query}</td>
-                    <td>${entry.reply}</td>
-                    <td>
-                        <button class="btn btn-sm btn-warning edit-entry" data-id="${entry.id}">Edit</button>
-                        <button class="btn btn-sm btn-danger delete-entry" data-id="${entry.id}">Delete</button>
-                    </td>
-                </tr>`).join('');
-                }
+                $('#currentEntries').text(paginatedEntries.length);
+                $('#totalEntries').text(filteredEntries.length);
 
+                let tableContent = paginatedEntries.map(entry => `
+            <tr>
+                <td>${entry.id || ''}</td>
+                <td>${entry.query || ''}</td>
+                <td>${entry.reply || ''}</td>
+                <td>
+                    <button class="btn btn-sm btn-warning edit-entry" data-id="${entry.id}">Edit</button>
+                    <button class="btn btn-sm btn-danger delete-entry" data-id="${entry.id}">Delete</button>
+                </td>
+            </tr>
+        `).join('');
                 $('#entryList').html(tableContent);
             }
 
             function renderPagination() {
-                const totalPages = Math.ceil(entries.length / rowsPerPage);
+                const searchQuery = $('#searchBar').val().toLowerCase();
+                const filteredEntries = entries.filter(entry =>
+                    entry.query.toLowerCase().includes(searchQuery) ||
+                    entry.reply.toLowerCase().includes(searchQuery)
+                );
+
+                const totalPages = Math.ceil(filteredEntries.length / rowsPerPage);
                 let pageNumbers = '';
 
                 for (let i = 1; i <= totalPages; i++) {
@@ -270,7 +325,8 @@
                 $('#entryModal').modal('show');
             });
 
-            $('#saveEntryBtn').click(function () {
+            $('#saveEntryBtn').click(function (event) {
+                event.preventDefault();
                 const id = $('#entryId').val();
                 const query = $('#query').val();
                 const reply = $('#reply').val();

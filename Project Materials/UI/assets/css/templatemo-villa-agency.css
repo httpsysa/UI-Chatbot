@@ -70,6 +70,7 @@ ul, li {
 
 header, nav, section, article, aside, footer, hgroup {
   display: block;
+  
 }
 
 * {
@@ -81,6 +82,7 @@ html, body {
   -ms-text-size-adjust: 100%;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  
 }
 
 a {
@@ -151,7 +153,7 @@ body {
 }
 
 .section-heading h6 {
-  color: #ee626b;
+  color: #a70000;
   font-size: 15px;
   text-transform: uppercase;
   font-weight: 700;
@@ -159,7 +161,7 @@ body {
 
 .icon-button a {
   display: inline-block;
-  background-color: #1e1e1e;
+  background-color: #a70000;
   color: #fff;
   font-size: 14px;
   font-weight: 400;
@@ -171,7 +173,7 @@ body {
 }
 
 .icon-button a i {
-  background-color: #f35525;
+  background-color: #1e1e1e;
   height: 50px;
   width: 50px;
   text-align: center;
@@ -183,7 +185,7 @@ body {
 }
 
 .icon-button a:hover {
-  color: #f35525;
+  color: #a70000;
 }
 
 .icon-button a:hover i {
@@ -192,7 +194,7 @@ body {
 
 .main-button a {
   display: inline-block;
-  background-color: #1e1e1e;
+  background-color: #a70000;
   color: #fff;
   font-size: 14px;
   font-weight: 500;
@@ -204,7 +206,7 @@ body {
 }
 
 .main-button a:hover {
-  background-color: #f35525;
+  background-color: 	#ff7b7b;
   color: #fff;
 }
 
@@ -281,7 +283,7 @@ Pre-loader Style
   height: 16px;
   top: 12px;
   left: 15px;
-  background: #f35525;
+  background: 	#a70000;
   border-radius: 50%;
   -webkit-transform: translateX(0);
   transform: translateX(0);
@@ -304,7 +306,7 @@ Pre-loader Style
   width: 16px;
   height: 16px;
   margin-left: 16px;
-  background: #f35525;
+  background: 	#a70000;
   border-radius: 50%;
 }
 
@@ -348,7 +350,7 @@ Header Style
 }
 
 .sub-header ul.social-links li a:hover {
-  background-color: #f35525;
+  background-color: 	#a70000;
 }
 
 .sub-header ul.info li {
@@ -367,7 +369,7 @@ Header Style
 
 .sub-header ul.info li i {
   font-size: 20px;
-  color: #f35525;
+  color: 	#a70000;
   margin-right: 8px;
 }
 
@@ -387,7 +389,7 @@ Header Style
 
 .header-area {
   position: relative;
-  background-color: #fff;
+  background-color: 	#a70000;
   height: 100px;
   z-index: 100;
   -webkit-transition: all .5s ease 0s;
@@ -450,11 +452,11 @@ Header Style
   padding-left: 20px;
   padding-right: 20px;
   font-weight: 500;
-  font-size: 15px;
+  font-size: 18px;
   height: 40px;
   line-height: 40px;
   text-transform: capitalize;
-  color: #1e1e1e;
+  color: #ffffff;
   -webkit-transition: all 0.4s ease 0s;
   -moz-transition: all 0.4s ease 0s;
   -o-transition: all 0.4s ease 0s;
@@ -464,7 +466,7 @@ Header Style
 }
 
 .header-area .main-nav .nav li:last-child a {
-  background-color: #1e1e1e;
+  background-color: 	#ea0d0d;
   color: #fff;
   font-size: 14px;
   font-weight: 400;
@@ -474,7 +476,7 @@ Header Style
 }
 
 .header-area .main-nav .nav li:last-child a i {
-  background-color: #f35525;
+  background-color: 	#ff5252;
   display: inline-block;
   width: 40px;
   height: 40px;
@@ -494,16 +496,17 @@ Header Style
 }
 
 .header-area .main-nav .nav li:hover a {
-  color: #f35525;
+  color: #fa8f8f;
 }
 
 .header-area .main-nav .nav li a.active {
-  color: #f35525;
+  color: #fa4b4b;
+
 }
 
 
 .background-header .main-nav .nav li a.active {
-  color: #f35525;
+  color: #a70000;
 }
 
 .header-area .main-nav .menu-trigger {
@@ -769,7 +772,7 @@ Banner Style
 
 .main-banner .item span.category em {
   font-style: normal;
-  color: #f35525;
+  color: 	#a70000;
 }
 
 .main-banner .item h2 {
@@ -798,7 +801,7 @@ Banner Style
 }
 
 .main-banner .owl-dots .active {
-  background-color: #f35525;
+  background-color: #a70000;
 }
 
 .main-banner .owl-nav {
@@ -859,7 +862,7 @@ Featured Style
   width: 110px;
   height: 110px;
   line-height: 110px;
-  background-color: #f35525;
+  background-color: 	#a70000;
   border-radius: 50%;
   text-align: center;
   position: absolute;
@@ -899,7 +902,7 @@ Featured Style
 }
 
 .featured .accordion-button:not(.collapsed) {
-  color: #f35525;
+  color: 	#a70000;
   background-color: #fafafa;
   outline: none;
 }
@@ -996,7 +999,7 @@ Video Style
   display: inline-block;
   text-align: center;
   line-height: 52px;
-  color: #f35525;
+  color: 	#a70000;
   outline: 15px solid rgba(254, 85, 37, 0.5);
   font-size: 18px;
 }
@@ -1038,14 +1041,14 @@ Fun Facts Style
 .fun-facts .counter h2 {
   margin-right: 25px;
   font-size: 40px;
-  color: #f35525;
+  color: 	#a70000;
 }
 
 .fun-facts .counter:after {
   position: absolute;
   width: 50px;
   height: 50px;
-  background-color: #f35525;
+  background-color: 	#a70000;
   border-radius: 50%;
   content: '';
   right: -25px;
@@ -1081,7 +1084,7 @@ Best Deal Style
 }
 
 .best-deal .tabs-content .nav-tabs .nav-link.active {
-  background-color: #f35525 !important;
+  background-color: 	#a70000 !important;
   color: #fff;
 }
 
@@ -1203,7 +1206,7 @@ Properties Style
 
 .properties .item h6 {
   font-size: 20px;
-  color: #f35525;
+  color: 	#a70000;
   margin-top: 6px;
   display: inline-block;
   float: right;
@@ -1328,7 +1331,7 @@ Contact Style
 }
 
 .contact-content #contact-form button:hover {
-  background-color: #f35525;
+  background-color: 	#a70000;
 }
 
 
@@ -1344,7 +1347,7 @@ footer.footer-no-gap {
 
 footer {
   margin-top: 150px;
-  background-color: #1e1e1e;
+  background-color: 			#a70000;
   min-height: 100px;
 }
 
@@ -1437,7 +1440,7 @@ Properties Style
 }
 
 .properties ul.properties-filter li a.is_active {
-  background-color: #f35525;
+  background-color: 	#a70000;
   color: #fff;
 }
 
@@ -1446,7 +1449,7 @@ Properties Style
 }
 
 .properties ul.properties-filter li a:hover {
-  color: #f35525;
+  color: 	#a70000;
 }
 
 .properties ul.pagination {
@@ -1477,7 +1480,7 @@ Properties Style
 
 .properties ul.pagination li a:hover,
 .properties ul.pagination li a.is_active {
-  background-color: #f35525;
+  background-color: 	#a70000;
   color: #fff;
 }
 
@@ -1534,7 +1537,7 @@ Single Page Style
 }
 
 .single-property .accordion-button:not(.collapsed) {
-  color: #f35525;
+  color: 	#a70000;
   background-color: #fafafa;
   outline: none;
 }
@@ -1688,7 +1691,7 @@ Contact Page Style
 }
 
 .contact-page #contact-form button:hover {
-  background-color: #f35525;
+  background-color: 	#a70000;
 }
 
 
