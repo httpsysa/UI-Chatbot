@@ -142,10 +142,15 @@
         <div>
             <br><br>
             <center>
-                <p><a href="chatbot.php" class="btn btn-primary">Back to Chatbot</a></p>
+                <div class="button-container">
+                    <a href="chatbot.php" class="btn btn-primary">Back to Chatbot</a>
+                    <a href="dashboard.php" class="btn btn-primary">Back to Dashboard</a>
+                </div>
             </center>
+            <br><br>
         </div>
     </div>
+
 
     <!-- Add/Edit Entry Modal -->
     <div class="modal fade" id="entryModal" tabindex="-1" role="dialog" aria-labelledby="entryModalLabel"

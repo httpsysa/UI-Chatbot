@@ -1,10 +1,4 @@
 <?php
-session_start();
-
-// Replace with your actual credentials
-$valid_username = 'admin';
-$valid_password = 'password';
-
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $username = $_POST['username'];
     $password = $_POST['password'];
@@ -80,7 +74,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <input type="password" id="password" class="form-control" placeholder="Enter Password" required>
             </div>
             <button type="submit" class="btn btn-success w-100">Login</button>
-            <p class="error-message" id="errorMessage">Invalid Username or Password!</p>
+            <p class="error-message" id="errorMessage">Invalid Username or Password!</p><br><br>
+            <center><p><a href="index.html" class="btn">Back to Home Page</a></p></center>
         </form>
     </div>
 
@@ -96,7 +91,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             if (username === validUsername && password === validPassword) {
                 // Redirect to dashboard.html
-                window.location.href = "dashboard.html";
+                window.location.href = "dashboard.php";
             } else {
                 // Show error message
                 document.getElementById('errorMessage').style.display = 'block';

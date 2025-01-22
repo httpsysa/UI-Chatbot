@@ -1,3 +1,10 @@
+<?php
+// Prevent caching
+header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");
+header("Pragma: no-cache");
+header("Expires: 0");
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -99,7 +106,7 @@
     <!-- Navbar -->
     <nav class="navbar">
         <a href="#" class="navbar-brand">Admin</a>
-        <a href="index.html">Logout</a>
+        <a href="logout.php">Logout</a>
     </nav>
 
     <!-- Dashboard Content -->

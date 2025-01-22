@@ -1,5 +1,4 @@
 <?php
-// Database connection
 $servername = "localhost";
 $username = "root";
 $password = "";
@@ -159,7 +158,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         /* Footer */
         footer {
-            background-color: #333;
+            background: rgb(238,174,174);
+            background: -moz-radial-gradient(circle, rgba(238,174,174,1) 0%, rgba(255,255,255,1) 100%);
+            background: -webkit-radial-gradient(circle, rgba(238,174,174,1) 0%, rgba(255,255,255,1) 100%);
+            background: radial-gradient(circle, rgba(238,174,174,1) 0%, rgba(255,255,255,1) 100%);
+            filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#eeaeae",endColorstr="#ffffff",GradientType=1);
             color: white;
             text-align: center;
             padding: 10px 0;
@@ -171,7 +174,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         .header-area {
             position: sticky;
             top: 0;
-            background-color: white;
+            background: rgb(238,174,174);
+            background: -moz-radial-gradient(circle, rgba(238,174,174,1) 0%, rgba(255,255,255,1) 100%);
+            background: -webkit-radial-gradient(circle, rgba(238,174,174,1) 0%, rgba(255,255,255,1) 100%);
+            background: radial-gradient(circle, rgba(238,174,174,1) 0%, rgba(255,255,255,1) 100%);
+            filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#eeaeae",endColorstr="#ffffff",GradientType=1);
             z-index: 1000;
             width: 100%;
             border-bottom: 1px solid #f0f0f0;
@@ -188,7 +195,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             font-size: 24px;
             font-weight: bold;
             margin: 0;
-            color: black;
+            color: #cc0000;
+            
         }
 
         .nav {
@@ -212,15 +220,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
 
         .nav li a.active {
-            color: #ff6600;
+            color: #cc0000;
         }
 
         .nav li a:hover {
-            color: #ff6600;
+            color: #671414;
         }
 
         .nav li:last-child a {
-            background-color: #ff6600;
+            background-color: #cc0000 ;
             color: white;
             border-radius: 20px;
             padding: 8px 16px;
@@ -263,15 +271,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             }
         }
 
+
         .btn-primary {
-            background-color: #ff6600;
-            border-color: #ff6600;
+            color:rgb(136, 96, 96);
+            background-color:white;
         }
 
         .btn-primary:hover {
-            background-color: #e65c00;
-            border-color: #e65c00;
+            background-color: #eea5a5;
+            border-color: hsl(0, 72%, 80%);
         }
+
     </style>
 </head>
 
@@ -286,10 +296,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                             <h1>Villa</h1>
                         </a>
                         <ul class="nav">
-                            <li><a href="index.html" class="active">Home</a></li>
+                            <li><a href="index.html" class="active"><strong>Home</strong></a></li>
                             <li><a href="properties.html">Properties</a></li>
-                            <li><a href="property-details.html">Property Details</a></li>
-                            <li><a href="contact.html">Contact Us</a></li>
+                            <li><a href="property-details.html">Details</a></li>
                             <li><a href="chatbot.php"><i class="fa fa-comments"></i> Chat With Us</a></li>
                         </ul>
                         </ul>
@@ -320,59 +329,50 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </div>
 
 
-    <p><a href="admin.html" class="btn btn-primary">Click here to login as Admin!</a></p>
+    <p><a href="admin.php" class="btn btn-primary">Click here to login as Admin!</a></p>
 
-
-    <!--
-    <p class="action">
-        <a href="addform.php" class="btn btn-primary">Add Data</a>
-        <a href="index.php" class="btn btn-primary">Chat Now</a>
-        <a href="view.php" class="btn btn-primary">View</a>
-    </p>
-    -->
 
     <footer>Villa Chatbot. 2025 All rights reserved.</footer>
 
-        <script>
-            $(document).ready(function () {
-                function scrollToBottom() {
-                    const chatMessages = $('.chatbox-messages')[0];
-                    chatMessages.scrollTop = chatMessages.scrollHeight;
-                }
-
-        $('#data').on('keydown', function (e) {
-            if (e.key === 'Enter') {
-                $('#send-btn').click();
+    <script>
+        $(document).ready(function () {
+            function scrollToBottom() {
+                const chatMessages = $('.chatbox-messages')[0];
+                chatMessages.scrollTop = chatMessages.scrollHeight;
             }
-        });
+
+            $('#data').on('keydown', function (e) {
+                if (e.key === 'Enter') {
+                    $('#send-btn').click();
+                }
+            });
 
             $('#send-btn').on('click', function () {
-            const input = $('#data').val().trim();
-            if (input === '') return;
+                const input = $('#data').val().trim();
+                if (input === '') return;
 
-            const userMessage = `<div class="chatbox-message user">
+                const userMessage = `<div class="chatbox-message user">
                 <div class="chatbox-bubble user">${input}</div>
             </div>`;
-            $('.chatbox-messages').append(userMessage);
-            $('#data').val('');
+                $('.chatbox-messages').append(userMessage);
+                $('#data').val('');
 
-            $.ajax({
-                url: 'chatbot.php',
-            type: 'POST',
-            data: {query: input },
-            success: function(response) {
-                    const botReply = `<div class="chatbox-message bot">
+                $.ajax({
+                    url: 'chatbot.php',
+                    type: 'POST',
+                    data: { query: input },
+                    success: function (response) {
+                        const botReply = `<div class="chatbox-message bot">
                 <div class="chatbox-avatar"></div>
                 <div class="chatbox-bubble bot">${response}</div>
             </div>`;
-                    $('.chatbox-messages').append(botReply);
-                    scrollToBottom();
-                }
+                        $('.chatbox-messages').append(botReply);
+                        scrollToBottom();
+                    }
+                });
             });
         });
-    });
     </script>
 
 </body>
-
 </html>
