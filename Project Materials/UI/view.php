@@ -329,6 +329,11 @@
                 const query = $('#query').val();
                 const reply = $('#reply').val();
 
+                if (!query || !reply) {
+                    alert("Both query and reply fields are required.");
+                    return;
+                }
+
                 $.ajax({
                     url: 'submit_entry.php',
                     method: 'POST',
@@ -342,6 +347,7 @@
                     }
                 });
             });
+
 
             fetchEntries();
         });
