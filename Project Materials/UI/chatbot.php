@@ -1,3 +1,40 @@
+<?php
+// Database connection
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "QueriesDB";
+
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+// Handle POST request
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $userInput = $_POST['query'];
+
+    // Sanitize input to prevent SQL injection
+    $userInput = $conn->real_escape_string($userInput);
+
+    // Query the database for a matching reply
+    $sql = "SELECT Reply FROM faq WHERE Query = '$userInput'";
+    $result = $conn->query($sql);
+
+    if ($result->num_rows > 0) {
+        $row = $result->fetch_assoc();
+        echo $row['Reply'];
+    } else {
+        echo "I’m a so sorry, I do not recognize your message and I am unable to respond to that. For further assistance, please send an email to support@airbnb.com. Thank you";
+    }
+
+    $conn->close();
+    exit;
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -273,7 +310,7 @@
         <div class="chatbox-messages">
             <div class="chatbox-message bot">
                 <div class="chatbox-avatar"></div>
-                <div class="chatbox-bubble bot">Hello there, how can I help you?</div>
+                <div class="chatbox-bubble bot">Hi, Welcome to Villa Chat!</div>
             </div>
         </div>
         <div class="chatbox-input">
@@ -296,43 +333,46 @@
 
     <footer>Villa Chatbot. 2025 All rights reserved.</footer>
 
-    <script>
-        $(document).ready(function () {
-            function scrollToBottom() {
-                const chatMessages = $('.chatbox-messages')[0];
-                chatMessages.scrollTop = chatMessages.scrollHeight;
-            }
-
-            $('#data').on('keydown', function (e) {
-                if (e.key === 'Enter') {
-                    $('#send-btn').click();
+        <script>
+            $(document).ready(function () {
+                function scrollToBottom() {
+                    const chatMessages = $('.chatbox-messages')[0];
+                    chatMessages.scrollTop = chatMessages.scrollHeight;
                 }
-            });
+
+        $('#data').on('keydown', function (e) {
+            if (e.key === 'Enter') {
+                $('#send-btn').click();
+            }
+        });
 
             $('#send-btn').on('click', function () {
-                const input = $('#data').val().trim();
-                if (input === '') return;
+            const input = $('#data').val().trim();
+            if (input === '') return;
 
-                const userMessage = `<div class="chatbox-message user">
-                    <div class="chatbox-bubble user">${input}</div>
-                </div>`;
-                $('.chatbox-messages').append(userMessage);
+            const userMessage = `<div class="chatbox-message user">
+                <div class="chatbox-bubble user">${input}</div>
+            </div>`;
+            $('.chatbox-messages').append(userMessage);
+            $('#data').val('');
 
-                $('#data').val('');
-
-                const botReply = `<div class="chatbox-message bot">
-                    <div class="chatbox-avatar"></div>
-                    <div class="chatbox-bubble bot"> ${input}</div>
-                </div>`;
-                setTimeout(() => {
+            $.ajax({
+                url: 'chatbot.php',
+            type: 'POST',
+            data: {query: input },
+            success: function(response) {
+                    const botReply = `<div class="chatbox-message bot">
+                <div class="chatbox-avatar"></div>
+                <div class="chatbox-bubble bot">${response}</div>
+            </div>`;
                     $('.chatbox-messages').append(botReply);
                     scrollToBottom();
-                }, 500);
-
-                scrollToBottom();
+                }
             });
         });
+    });
     </script>
+
 </body>
 
 </html>

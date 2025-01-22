@@ -60,32 +60,25 @@
             width: 80px;
             /* Smaller width for the ID column */
             white-space: nowrap;
-            /* Prevents wrapping for the ID column */
         }
 
         th:nth-child(4),
         td:nth-child(4) {
             width: 150px;
-            /* Smaller width for the Action column */
             white-space: nowrap;
-            /* Prevents wrapping for the Action column */
         }
 
 
         th:nth-child(2),
         td:nth-child(2) {
             width: 40%;
-            /* Adjust width for the Query column */
             white-space: normal;
-            /* Allows wrapping for the Query column */
         }
 
         th:nth-child(3),
         td:nth-child(3) {
             width: 50%;
-            /* Adjust width for the Reply column */
             white-space: normal;
-            /* Allows wrapping for the Reply column */
         }
     </style>
 
